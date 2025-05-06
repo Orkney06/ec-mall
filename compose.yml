@@ -1,0 +1,19 @@
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mall
+      MYSQL_DATABASE: ecmall
+      MYSQL_USER: ecmall
+      TZ: "Asia/Tokyo"
+  external-api:
+    image: mockoon/cli:latest
+    volumes:
+      - ./mock:/data
+    ports:
+      - "3000:3000"
+    entrypoint: /bin/sh
+    command: >
+      -c "mockoon-cli start --data /data/ec-mall-external.json --port 3000"

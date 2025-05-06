@@ -1,0 +1,18 @@
+[versions]
+kotlin = "1.9.25"
+spring-boot-verson = "3.4.5"
+spring-boot-management = "1.1.7"
+exposed = "0.60.0"
+flyway = "8.2.0"
+
+[libraries]
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+exposed-time = { module = "org.jetbrains.exposed:exposed-java-time", version.ref = "exposed"}
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin"}
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot-verson"}
+spring-dependency-manager = { id = "io.spring.dependency-management", version.ref = "spring-boot-management"}
+flyway = { id = "org.flywaydb.flyway", version.ref = "flyway"}
