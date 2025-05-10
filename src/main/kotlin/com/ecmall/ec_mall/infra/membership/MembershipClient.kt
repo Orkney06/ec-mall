@@ -18,7 +18,7 @@ class MembershipClient : MembershipCreateUserQueryService,MembershipUpdateQueryS
     ): MembershipCreateUserQueryServiceDto {
         val responseJson = """
             {
-                "membership_id":"member_1234"
+                "membershipId":"member_1234"
             }
         """.trimIndent()
 
