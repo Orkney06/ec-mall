@@ -1,5 +1,5 @@
 {
-  "uuid": "59722bfc-411e-4b97-9657-2380fca0ceea",
+  "uuid": "07da8779-db1f-4fd3-ab2e-bfab3975d898",
   "lastMigration": 33,
   "name": "ec-mall-external",
   "endpointPrefix": "",
@@ -9,14 +9,14 @@
   "folders": [],
   "routes": [
     {
-      "uuid": "2159730a-1bdd-4019-8786-e6d19309f6c7",
+      "uuid": "44c2afb9-8d30-4252-b160-3541f96eb6b3",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "v1/create/member",
       "responses": [
         {
-          "uuid": "752cc60b-8960-45a7-ad42-224b8720feee",
+          "uuid": "45b95ad9-d846-4a3f-ab96-41f814919204",
           "body": "{\n  \"membership_id\": \"member_1234567890\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -29,13 +29,96 @@
           "rules": [
             {
               "target": "body",
-              "modifier": "",
-              "value": "",
+              "modifier": "user_name",
+              "value": "newuser123",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "newuser@example.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "SecurePassword123!",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "first_name",
+              "value": "taro",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "last_name",
+              "value": "yamada",
               "invert": false,
               "operator": "equals"
             }
           ],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "93416887-71ec-4250-ab03-7f000730a064",
+          "body": "{\n  \"status\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"リクエストが不正です。\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "user_name",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "first_name",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "last_name",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,
@@ -51,7 +134,7 @@
   "rootChildren": [
     {
       "type": "route",
-      "uuid": "2159730a-1bdd-4019-8786-e6d19309f6c7"
+      "uuid": "44c2afb9-8d30-4252-b160-3541f96eb6b3"
     }
   ],
   "proxyMode": false,
