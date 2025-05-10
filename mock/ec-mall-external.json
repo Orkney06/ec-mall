@@ -11,13 +11,13 @@
     {
       "uuid": "44c2afb9-8d30-4252-b160-3541f96eb6b3",
       "type": "http",
-      "documentation": "",
+      "documentation": "ユーザー作成API",
       "method": "post",
       "endpoint": "v1/create/member",
       "responses": [
         {
           "uuid": "45b95ad9-d846-4a3f-ab96-41f814919204",
-          "body": "{\n  \"membership_id\": \"member_1234567890\"\n}",
+          "body": "{\n  \"membershipId\": \"member_1234567890\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -29,7 +29,7 @@
           "rules": [
             {
               "target": "body",
-              "modifier": "user_name",
+              "modifier": "userName",
               "value": "newuser123",
               "invert": false,
               "operator": "equals"
@@ -50,14 +50,14 @@
             },
             {
               "target": "body",
-              "modifier": "first_name",
+              "modifier": "firstName",
               "value": "taro",
               "invert": false,
               "operator": "equals"
             },
             {
               "target": "body",
-              "modifier": "last_name",
+              "modifier": "lastName",
               "value": "yamada",
               "invert": false,
               "operator": "equals"
@@ -129,12 +129,74 @@
       "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "eaea761c-4db9-4457-b960-f3abc5ecbfd3",
+      "type": "http",
+      "documentation": "ユーザー更新API",
+      "method": "post",
+      "endpoint": "v1/edit/member/:id",
+      "responses": [
+        {
+          "uuid": "26c4b255-a0bd-462d-ab03-88645bce85f0",
+          "body": "{\n  \"membershipId\": \"member_1234567890\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "id",
+              "value": "member_1234567890",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "192e49d3-f3a7-48ab-ab1c-425ac6f62324",
+          "body": "{\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"指定されたユーザーが見つかりませんでした。\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "rootChildren": [
     {
       "type": "route",
       "uuid": "44c2afb9-8d30-4252-b160-3541f96eb6b3"
+    },
+    {
+      "type": "route",
+      "uuid": "eaea761c-4db9-4457-b960-f3abc5ecbfd3"
     }
   ],
   "proxyMode": false,

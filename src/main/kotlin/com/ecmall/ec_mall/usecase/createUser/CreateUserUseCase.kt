@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component
 
 @Component
 class CreateUserUseCase(
-    private val membershipIdQueryService: MembershipIdQueryService,
+    private val membershipCreateUserQueryService: MembershipCreateUserQueryService,
     private val userRepository: UserRepository
 ) {
     fun execute(createUserParam: CreateUserParam): CreateUserDto {
         // 会員情報を送信して会員IDを取得
-        val membershipId = membershipIdQueryService.fetchCreatedMember(
+        val membershipId = membershipCreateUserQueryService.fetchCreatedMember(
             createUserParam.userName,
             createUserParam.email,
             createUserParam.password,

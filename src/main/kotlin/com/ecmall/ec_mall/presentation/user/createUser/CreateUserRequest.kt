@@ -5,14 +5,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CreateUserRequest(
-    @SerialName("user_name") val userName: String,
-    val email: String,
-    val password: String,
-    @SerialName("first_name") val firstName: String,
-    @SerialName("last_name") val lastName: String,
+    @SerialName("userName") val userName: String,
+    @SerialName("email") val email: String,
+    @SerialName("password") val password: String,
+    @SerialName("firstName") val firstName: String,
+    @SerialName("lastName") val lastName: String,
 ) {
-    fun validate(): CreateUserParam {
-        require(userName.isNotBlank()) { "ユーザー名は必須です" }
+    fun toParam(): CreateUserParam {
         return CreateUserParam(
             userName = userName,
             email = email,
@@ -20,6 +19,15 @@ data class CreateUserRequest(
             firstName = firstName,
             lastName = lastName
         )
+    }
+
+    companion object {
+        fun validate(request: CreateUserRequest): List<String> {
+            val errors = mutableListOf<String>()
+            require(request.userName.isNotBlank()) { errors.add("ユーザー名は必須です") }
+            require(request.email.isNotBlank()) { errors.add("メールアドレスは必須です")}
+            return errors
+        }
     }
 }
 

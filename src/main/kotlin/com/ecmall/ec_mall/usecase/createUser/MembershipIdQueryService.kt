@@ -1,15 +1,15 @@
 package com.ecmall.ec_mall.usecase.createUser
 
-data class MembershipIdDto(
+data class MembershipCreateUserQueryServiceDto(
     val membershipId: String
 )
 
-interface MembershipIdQueryService {
+interface MembershipCreateUserQueryService {
     fun fetchCreatedMember(
         userName: String,
         email: String,
         password: String,
         firstName: String,
         lastName: String
-    ): MembershipIdDto
+    ): MembershipCreateUserQueryServiceDto
 }

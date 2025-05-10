@@ -16,12 +16,19 @@ POST /api/user/:id
 - リクエストボディ
 ```json
 {
-  "user_id": "string",
-  "user_name": "string",        
+  "userId": "string",
+  "userName": "string",        
   "email": "string",           
   "password": "string",        
-  "first_name": "string",       
-  "last_name": "string"    
+  "firstName": "string",       
+  "lastName": "string"    
+}
+```
+- レスポンスボディ
+```json
+{
+  "userId": "string",
+  "membershipId": "string"
 }
 ```
 
@@ -32,8 +39,11 @@ sequenceDiagram
     participant クライアント
     participant サーバー
     participant 会員情報サービス
+    participant DB
     クライアント->>+サーバー: ユーザー更新APIを呼び出し
     サーバー->>+会員情報サービス: 会員情情報を更新
     会員情報サービス-->>-サーバー: 変更した会員IDを返却
+    サーバー->>+DB: ユーザーテーブルからIDを取得
+    DB-->>-サーバー: ユーザーIDを返却
     サーバー->>-クライアント: 結果を返却
 ```
