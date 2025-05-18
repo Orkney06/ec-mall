@@ -30,6 +30,7 @@ dependencies {
 	implementation(libs.exposed.time)
 	implementation("com.mysql:mysql-connector-j:8.2.0")
 	implementation("org.flywaydb:flyway-core")
+	implementation("org.apache.httpcomponents.client5:httpclient5:5.4.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

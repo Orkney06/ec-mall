@@ -187,6 +187,37 @@
       "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "b691c986-dd7a-45bd-b2d3-3fa23fb5d55d",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/create/member",
+      "responses": [
+        {
+          "uuid": "3dc7cac9-1d74-476a-a37f-cab17578b4a9",
+          "body": "{\n    \"membershipId\": \"member_1234567890\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "rootChildren": [
@@ -197,6 +228,10 @@
     {
       "type": "route",
       "uuid": "eaea761c-4db9-4457-b960-f3abc5ecbfd3"
+    },
+    {
+      "type": "route",
+      "uuid": "b691c986-dd7a-45bd-b2d3-3fa23fb5d55d"
     }
   ],
   "proxyMode": false,
