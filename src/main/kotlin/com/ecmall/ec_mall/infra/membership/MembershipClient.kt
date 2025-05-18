@@ -5,10 +5,18 @@ import com.ecmall.ec_mall.usecase.createUser.MembershipCreateUserQueryServiceDto
 import com.ecmall.ec_mall.usecase.updateUser.MembershipUpdateQueryService
 import com.ecmall.ec_mall.usecase.updateUser.MembershipUpdateQueryServiceDto
 import kotlinx.serialization.json.Json
+import org.slf4j.LoggerFactory
+import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
+import org.springframework.web.client.RestClient
+import org.springframework.web.client.body
 
 @Component
-class MembershipClient : MembershipCreateUserQueryService,MembershipUpdateQueryService {
+class MembershipClient: MembershipCreateUserQueryService,MembershipUpdateQueryService {
+
+    private val membershipBaseUrl = "http://localhost:3000/v1/create/member"
+    private val logger = LoggerFactory.getLogger(MembershipClient::class.java)
+
     override fun fetchCreatedMember(
         userName: String,
         email: String,
@@ -16,15 +24,30 @@ class MembershipClient : MembershipCreateUserQueryService,MembershipUpdateQueryS
         firstName: String,
         lastName: String
     ): MembershipCreateUserQueryServiceDto {
-        val responseJson = """
-            {
-                "membershipId":"member_1234"
-            }
-        """.trimIndent()
+        val url = "http://localhost:3000/v1/create/member"
 
-        val memberResponse = Json.decodeFromString<MemberResponse>(responseJson)
+        val requestBody = mapOf(
+            "userName" to userName,
+            "email" to email,
+            "password" to password,
+            "firstName" to firstName,
+            "lastName" to lastName
+        )
+
+        logger.info("メンバーシップAPIリクエスト URI: {}", membershipBaseUrl)
+        val restClient = RestClient.create()
+        val result = restClient.post()
+            .uri(url)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(requestBody)
+            .retrieve()
+            .body<MemberResponse>()
+        if (result == null) return MembershipCreateUserQueryServiceDto("")
+
+        println(result)
+
         return MembershipCreateUserQueryServiceDto(
-            membershipId = memberResponse.membershipId
+            membershipId = result.membershipId
         )
     }
 
