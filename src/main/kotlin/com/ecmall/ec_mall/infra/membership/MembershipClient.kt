@@ -41,13 +41,20 @@ class MembershipClient: MembershipCreateUserQueryService,MembershipUpdateQuerySe
             .contentType(MediaType.APPLICATION_JSON)
             .body(requestBody)
             .retrieve()
-            .body<MemberResponse>()
+            .body<String>()
         if (result == null) return MembershipCreateUserQueryServiceDto("")
 
-        println(result)
+        logger.info("ユーザー作成APIレスポンス: {}", result)
+
+        val json = Json {
+            ignoreUnknownKeys = true
+            prettyPrint = true
+        }
+
+        val jsonToResponse = json.decodeFromString<MemberResponse>(result)
 
         return MembershipCreateUserQueryServiceDto(
-            membershipId = result.membershipId
+            membershipId = jsonToResponse.membershipId
         )
     }
 
