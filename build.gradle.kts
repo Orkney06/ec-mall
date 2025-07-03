@@ -3,6 +3,7 @@ plugins {
 	kotlin("plugin.serialization") version "1.9.25"
 	id("org.springframework.boot") version "3.4.5"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("org.graalvm.buildtools.native") version "0.10.6"
 	alias(libs.plugins.flyway)
 }
 

@@ -11,5 +11,5 @@ interface MembershipCreateUserQueryService {
         password: String,
         firstName: String,
         lastName: String
-    ): MembershipCreateUserQueryServiceDto
+    ): MembershipCreateUserQueryServiceDto?
 }
