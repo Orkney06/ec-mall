@@ -23,7 +23,7 @@ class MembershipClient: MembershipCreateUserQueryService,MembershipUpdateQuerySe
         password: String,
         firstName: String,
         lastName: String
-    ): MembershipCreateUserQueryServiceDto {
+    ): MembershipCreateUserQueryServiceDto? {
         val url = "http://localhost:3000/v1/create/member"
 
         val requestBody = mapOf(
@@ -42,9 +42,7 @@ class MembershipClient: MembershipCreateUserQueryService,MembershipUpdateQuerySe
             .body(requestBody)
             .retrieve()
             .body<MemberResponse>()
-        if (result == null) return MembershipCreateUserQueryServiceDto("")
-
-        println(result)
+        if (result == null) return null
 
         return MembershipCreateUserQueryServiceDto(
             membershipId = result.membershipId

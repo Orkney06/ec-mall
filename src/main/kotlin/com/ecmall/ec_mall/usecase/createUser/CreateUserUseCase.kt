@@ -20,7 +20,7 @@ class CreateUserUseCase(
             createUserParam.lastName
         )
 
-        val createdUser = User.create(membershipId = membershipId.membershipId)
+        val createdUser = User.create(membershipId = membershipId!!.membershipId)
 
         userRepository.insert(createdUser)
 
